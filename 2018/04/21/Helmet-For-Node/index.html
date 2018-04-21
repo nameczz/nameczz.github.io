@@ -16,7 +16,7 @@
 
   <!--Open Graph Title-->
   
-      <meta property="og:title" content="Hello World"/>
+      <meta property="og:title" content="Helmet For Node"/>
   
   <!--Open Graph Description-->
   
@@ -33,7 +33,7 @@
 
   <!-- Title -->
   
-  <title>Hello World - Hexo</title>
+  <title>Helmet For Node - Hexo</title>
 
 
   <link rel="shortcut icon" href="https://hexo.io/icon/favicon-96x96.png">
@@ -121,7 +121,7 @@
         <!-- Title date & tags -->
         <div class="post-header">
           <h1 class="entry-title">
-            Hello World
+            Helmet For Node
             
           </h1>
           <p class="posted-on">
@@ -135,15 +135,19 @@
         </div>
         <!-- Post Main Content -->
         <div class="entry-content">
-          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+          <h2 id="Hemlet"><a href="#Hemlet" class="headerlink" title="Hemlet"></a>Hemlet</h2><p><a href="https://github.com/helmetjs/helmet" target="_blank" rel="noopener">https://github.com/helmetjs/helmet</a><br>Helmet helps you secure your Express apps by setting various HTTP headers.<br>Helmet is a collection of 12 smaller middleware functions that set HTTP headers.</p>
+<h3 id="Content-Security-Policy"><a href="#Content-Security-Policy" class="headerlink" title="Content Security Policy"></a>Content Security Policy</h3><p>CSP模块是通过设置Content-Security-Policy header来保护网站不受到注入危险的Javascrpt,css…等。<br>用这个模块的话：需要设置一系列的白名单，js,css,images等等你需要保护的内容。<br>这类攻击最著名等就是XSS攻击－－－会将危险的Javascript注入进网页中，从而造成危险。</p>
+<h3 id="Expect-CT"><a href="#Expect-CT" class="headerlink" title="Expect-CT"></a>Expect-CT</h3><p>Expect-CT 这个HTTP Header 会让浏览器去检查Certificate Transparency，来防止错误签发的网站证书的使用不被发现。</p>
+<h3 id="dnsPrefetchControl"><a href="#dnsPrefetchControl" class="headerlink" title="dnsPrefetchControl"></a>dnsPrefetchControl</h3><p>通过设置X-DNS-Prefetch-Control header来取消浏览器的 DNS prefetching.<br>Prefetching 虽然可以让用户更加快速的连接，但是这会让用户浏览他们根本没有浏览过的网站，从而导致信息泄露。<br>PS: chrome 会自动把当前页面的所有带href的link的dns都prefetch一遍。 前端添加prefetch，兼容性不佳。</p>
+<h3 id="Frameguard"><a href="#Frameguard" class="headerlink" title="Frameguard"></a>Frameguard</h3><p>通过设置X-Frame-Options header 来降低Clickjacking的风险。<br>Clickjacking: 就是在真正的按钮上 覆盖了外链，导致用户点击了并不想点击的链接。</p>
+<h3 id="hidePoweredBy"><a href="#hidePoweredBy" class="headerlink" title="hidePoweredBy"></a>hidePoweredBy</h3><p>通过设置X-Powered-By header，可以让黑客不知道你所用的技术是什么，甚至可以设置成错误的技术源，来误导不怀好意的用户。</p>
+<h3 id="hpkp"><a href="#hpkp" class="headerlink" title="hpkp"></a>hpkp</h3><p>通过设置 Public-Key-Pins header来保护网站不备伪造。<br>通过伪造certificate authorities 可能可以伪造https的网站，来造成威胁。</p>
+<h3 id="hsts"><a href="#hsts" class="headerlink" title="hsts"></a>hsts</h3><p>通过设置 Strict-Transport-Security 来告诉浏览器只访问网站的https版本，拒绝访问http。<br>但是这个并不会强行跳转http－https,express-enforces-ssl这插件可能可以，没试过。</p>
+<h3 id="eNoOpen"><a href="#eNoOpen" class="headerlink" title="eNoOpen"></a>eNoOpen</h3><p>X-Download-Options：noopen. 这个是用来防止IE8的bug，不让用户直接在网站上修改html。</p>
+<h3 id="noCache"><a href="#noCache" class="headerlink" title="noCache"></a>noCache</h3><p>这不是防御攻击，只是不让浏览器缓存你的js,css..等文件。以防当你更新了相应版本，浏览器缺读取的是旧文件。</p>
+<h3 id="noSniff"><a href="#noSniff" class="headerlink" title="noSniff"></a>noSniff</h3><p>X-Content-Type-Options 保证浏览器去读取正确（安全）的文件类型，你传过去是什么Mimetype就是什么Mimetype。<br>不会去判断这个文件的类型，并执行相应操作。</p>
+<h3 id="referrerPolicy"><a href="#referrerPolicy" class="headerlink" title="referrerPolicy"></a>referrerPolicy</h3><p>Referrer-Policy 可以保证网站不知道用户是从哪个网站跳转过来。<br>如果不加上，example.com -&gt; mdn.com. mdn.com就可以知道用户是从example.com点击跳转而来。</p>
+<h3 id="XSS-Filter"><a href="#XSS-Filter" class="headerlink" title="XSS Filter"></a>XSS Filter</h3><p>XSS攻击， 最主要的目的就是可以控制你网站上的Javascript代码，从而做些什么。<br>X-XSS-Protection header 可以防御一种特定的通过浏览器url query产生的xss攻击。<br>设置了这个可以让浏览器不执行在url种javascript。</p>
 
         </div>
       </article>
@@ -162,10 +166,10 @@
     <!-- Pre or Next -->
     <div class="nav-links">
       
-        <div class="nav-previous">
-          <a href="/2018/04/21/My-New-Post/" rel="prev"><span class="meta-arraw meta-arraw-left"></span> Older Posts</a>
-        </div>
       
+        <div class="nav-next">
+          <a href="/2018/04/21/My-New-Post/" rel="prev">Newer Posts <span class="meta-arraw meta-arraw-right"></span></a>
+        </div>
       
     </div>
 
