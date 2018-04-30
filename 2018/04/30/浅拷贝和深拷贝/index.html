@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!--Description-->
+  
+
+  <!--Author-->
+  
+  <meta name="author" content="CZZ">
+  
+
+  <!--Open Graph Title-->
+  
+      <meta property="og:title" content="浅拷贝和深拷贝"/>
+  
+  <!--Open Graph Description-->
+  
+  <!--Open Graph Site Name-->
+  <meta property="og:site_name" content="Blog"/>
+  <!--Type page-->
+  
+      <meta property="og:type" content="article" />
+  
+  <!--Page Cover-->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Title -->
+  
+  <title>浅拷贝和深拷贝 - Blog</title>
+
+
+  <link rel="shortcut icon" href="https://hexo.io/icon/favicon-96x96.png">
+
+  <!-- Custom CSS/Sass -->
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!----------------------------
+  https://github.com/GallenHu/hexo-theme-Daily
+
+ _____            _   _
+|  __ \          (_) | |
+| |  | |   __ _   _  | |  _   _
+| |  | |  / _` | | | | | | | | |
+| |__| | | (_| | | | | | | |_| |
+|_____/   \__,_| |_| |_|  \__, |
+                          __/ |
+                         |___/
+
+    --------------------------->
+
+</head>
+
+
+<body>
+
+  <!-- Nav -->
+  <header class="site-header">
+  <div class="header-inside">
+    <div class="logo">
+      <a href="/" rel="home">
+        
+        <img src="https://hexo.io/logo.svg" alt="Blog" height="60">
+        
+      </a>
+    </div>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse">
+        <ul class="navbar-nav">
+          
+          
+            <li>
+              <a href="/.">
+                
+                  Home
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/archives">
+                
+                  Archive
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/about">
+                
+                  About
+                
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+    <div class="button-wrap">
+      <button class="menu-toggle">Primary Menu</button>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            浅拷贝和深拷贝
+            
+          </h1>
+          <p class="posted-on">
+          2018-04-30
+          </p>
+          <div class="tags-links">
+            
+              
+                <a href="/tags/前端开发/" rel="tag">
+                  前端开发
+                </a>
+              
+                <a href="/tags/杂学/" rel="tag">
+                  杂学
+                </a>
+              
+            
+          </div>
+        </div>
+        <!-- Post Main Content -->
+        <div class="entry-content">
+          <h3 id="Javascript-变量类型"><a href="#Javascript-变量类型" class="headerlink" title="Javascript 变量类型"></a>Javascript 变量类型</h3><ol>
+<li><p>基本类型：<br>5种基本数据类型Undefined、Null、Boolean、Number 和 String，变量是直接按值存放的，存放在栈内存中的简单数据段，可以直接访问。</p>
+</li>
+<li><p>引用类型：<br>存放在堆内存中的对象，变量保存的是一个指针，这个指针指向另一个位置。当需要访问引用类型（如对象，数组等）的值时，首先从栈中获得该对象的地址指针，然后再从堆内存中取得所需的数据。</p>
+</li>
+<li><p>个人理解：<br>深复制和浅复制只是针对引用类型对象来说有所区别，浅复制只复制一层对象的属性，而深复制则递归复制了所有层级。</p>
+</li>
+</ol>
+<h3 id="深浅拷贝区别"><a href="#深浅拷贝区别" class="headerlink" title="深浅拷贝区别"></a>深浅拷贝区别</h3><p>了解变量类型后，就可以明白以下内容：<br>JavaScript存储对象都是存地址的，所以<font color="#0099ff" face="黑体">浅拷贝</font>会导致 obj1 和obj2 指向同一块内存地址。改变了其中一方的内容，都是在原来的内存上做修改会导致拷贝对象和源对象都发生改变。<br>而<font color="#0099ff" face="黑体">深拷贝</font>是开辟一块新的内存地址，将原对象的各个属性逐个复制进去。对拷贝对象和源对象各自的操作互不影响。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let arr = [1,2,3];</span><br><span class="line">let arrCopy = arr;</span><br><span class="line"></span><br><span class="line">arr[0]= &apos;test&apos;;</span><br><span class="line"></span><br><span class="line">console.log(arr) // [ &apos;test&apos;, 2, 3 ]</span><br><span class="line">console.log(arrCopy) // [ &apos;test&apos;, 2, 3 ]</span><br></pre></td></tr></table></figure>
+<h3 id="浅拷贝实现"><a href="#浅拷贝实现" class="headerlink" title="浅拷贝实现"></a>浅拷贝实现</h3><ol>
+<li>直接等号赋值</li>
+<li>Object.assign({},object)</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var test = &#123;</span><br><span class="line">    a: 1,</span><br><span class="line">    b: &#123; f: &#123; g: 1 &#125; &#125;,</span><br><span class="line">    c: [1, 2, 3]</span><br><span class="line">&#125;;</span><br><span class="line">var copy = Object.assign(&#123;&#125;, test);</span><br><span class="line">console.log(test.b.f === copy.b.f) // true</span><br></pre></td></tr></table></figure>
+<h3 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h3><ol>
+<li>Array的slice和concat方法: <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// 原数组的新增并不会改变 新数组，的确和简单的赋值有区别。</span><br><span class="line">var arr = [1,[1,2,3]],3]; </span><br><span class="line">var arr_shallow = arr; </span><br><span class="line">var arr_concat = arr.concat(); </span><br><span class="line">var arr_slice = arr.slice(0); </span><br><span class="line">console.log(arr === arr_shallow); //true </span><br><span class="line">console.log(arr === arr_slice); //false</span><br><span class="line">console.log(arr === arr_concat); //false</span><br><span class="line">arr[3] = [4]</span><br><span class="line">console.log(arr_shallow) // 改变 [ 1, [ 1, 2, 3 ], 3, [ 4 ] ]</span><br><span class="line">console.log(arr_concat) // 未改变 [ 1, [ 1, 2, 3 ], 3 ]</span><br><span class="line">console.log(arr_slice) // 未改变 [ 1, [ 1, 2, 3 ], 3 ]</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 但是修改旧数组的值，新数组的值却会改变。 还是和深拷贝有一定的区别。</span><br><span class="line">// 继续上面的栗子～</span><br><span class="line">arr[1][3] = 4</span><br><span class="line">console.log(arr_shallow) // 改变了原值 [ 1, [ 1, 2, 3, 4 ], 3, [ 4 ] ]</span><br><span class="line">console.log(arr_concat) // 仅仅改变了深层对象值 [ 1, [ 1, 2, 3, 4 ], 3 ]</span><br><span class="line">console.log(arr_slice) // 仅仅改变了深层对象值 [ 1, [ 1, 2, 3, 4 ], 3 ]</span><br></pre></td></tr></table></figure>
+<h3 id="JSON对象的parse和stringify"><a href="#JSON对象的parse和stringify" class="headerlink" title="JSON对象的parse和stringify"></a>JSON对象的parse和stringify</h3><p>这种方法使用较为简单，可以满足基本的深拷贝需求，而且能够处理JSON格式能表示的所有数据类型，但是对于正则表达式类型、函数类型等无法进行深拷贝(而且会直接丢失相应的值)。还有一点不好的地方是它会抛弃对象的constructor。也就是深拷贝之后，不管这个对象原来的构造函数是什么，在深拷贝之后都会变成Object。同时如果对象中存在循环引用的情况也无法正确处理。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">//例1</span><br><span class="line">var source = &#123; name:&quot;source&quot;, child:&#123; name:&quot;child&quot; &#125; &#125; </span><br><span class="line">var target = JSON.parse(JSON.stringify(source));</span><br><span class="line">target.name = &quot;target&quot;;  //改变target的name属性</span><br><span class="line">console.log(source.name); //source </span><br><span class="line">console.log(target.name); //target</span><br><span class="line">target.child.name = &quot;target child&quot;; //改变target的child </span><br><span class="line">console.log(source.child.name); //child </span><br><span class="line">console.log(target.child.name); //target child</span><br><span class="line">//例2</span><br><span class="line">var source = &#123; name:function()&#123;console.log(1);&#125;, child:&#123; name:&quot;child&quot; &#125; &#125; </span><br><span class="line">var target = JSON.parse(JSON.stringify(source));</span><br><span class="line">console.log(target.name); //undefined</span><br><span class="line">//例3</span><br><span class="line">var source = &#123; name:function()&#123;console.log(1);&#125;, child:new RegExp(&quot;e&quot;) &#125;</span><br><span class="line">var target = JSON.parse(JSON.stringify(source));</span><br><span class="line">console.log(target.name); //undefined</span><br><span class="line">console.log(target.child); //Object &#123;&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="学自于-https-github-com-wengjq-Blog-issues-3"><a href="#学自于-https-github-com-wengjq-Blog-issues-3" class="headerlink" title="学自于 https://github.com/wengjq/Blog/issues/3,"></a>学自于 <a href="https://github.com/wengjq/Blog/issues/3" target="_blank" rel="noopener">https://github.com/wengjq/Blog/issues/3</a>,</h2><p>jQuery的extend方法使用基本的递归思路实现了浅拷贝和深拷贝，但是这个方法也无法处理源对象内部循环引用。</p>
+
+        </div>
+      </article>
+    </div>
+    <!-- Comments -->
+    <div class="container">
+      
+<section id="comment">
+  <!-- <h1 class="title">Comments</h1> -->
+
+  
+</section>
+
+
+    </div>
+    <!-- Pre or Next -->
+    <div class="nav-links">
+      
+      
+        <div class="nav-next">
+          <a href="/2018/04/30/merge-sort/" rel="prev">Newer Posts <span class="meta-arraw meta-arraw-right"></span></a>
+        </div>
+      
+    </div>
+
+  </div>
+</div>
+
+
+  <!-- Footer -->
+  <!-- Footer-widgets -->
+<div class="footer-widgets">
+  <div class="row inside-wrapper">
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">关于本站</h1>
+        <div class="custom-widget-content">
+          
+          <p>记录在工作／学习中碰到的知识，以备不时之需！ </p>
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">Contact</h1>
+        <div class="widget-text">
+          
+            
+              <a href="https://github.com/nameczz" class="icon icon-github" target="_blank">github</a>
+            
+              <a href="mailto:nameczz@126.com" class="icon icon-mail" target="_blank">mail</a>
+            
+          
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">Search</h1>
+        <div class="widget-text">
+          <form onSubmit="return appDaily.submitSearch('')">
+            <p>
+              <input type="text" placeholder="search..." id="homeSearchInput">
+            </p>
+            <!-- <input type="submit" value="GO"> -->
+          </form>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+<!-- Footer -->
+<footer class="site-info">
+  <p>
+    <span>Blog &copy; 2018</span>
+    
+      <span class="split">|</span>
+      <span>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> with Theme <a href="https://github.com/GallenHu/hexo-theme-Daily" target="_blank">Daily</a></span>
+    
+  </p>
+</footer>
+
+
+  <!-- After footer scripts -->
+  <!-- scripts -->
+<script src="/js/app.js"></script>
+
+
+
+
+
+</body>
+
+</html>
