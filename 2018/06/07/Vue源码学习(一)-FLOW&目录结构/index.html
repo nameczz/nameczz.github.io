@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!--Description-->
+  
+
+  <!--Author-->
+  
+  <meta name="author" content="CZZ">
+  
+
+  <!--Open Graph Title-->
+  
+      <meta property="og:title" content="Vue源码学习(一)-FLOW&amp;目录结构"/>
+  
+  <!--Open Graph Description-->
+  
+  <!--Open Graph Site Name-->
+  <meta property="og:site_name" content="Blog"/>
+  <!--Type page-->
+  
+      <meta property="og:type" content="article" />
+  
+  <!--Page Cover-->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Title -->
+  
+  <title>Vue源码学习(一)-FLOW&amp;目录结构 - Blog</title>
+
+
+  <link rel="shortcut icon" href="https://hexo.io/icon/favicon-96x96.png">
+
+  <!-- Custom CSS/Sass -->
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!----------------------------
+  https://github.com/GallenHu/hexo-theme-Daily
+
+ _____            _   _
+|  __ \          (_) | |
+| |  | |   __ _   _  | |  _   _
+| |  | |  / _` | | | | | | | | |
+| |__| | | (_| | | | | | | |_| |
+|_____/   \__,_| |_| |_|  \__, |
+                          __/ |
+                         |___/
+
+    --------------------------->
+
+</head>
+
+
+<body>
+
+  <!-- Nav -->
+  <header class="site-header">
+  <div class="header-inside">
+    <div class="logo">
+      <a href="/" rel="home">
+        
+        <img src="https://hexo.io/logo.svg" alt="Blog" height="60">
+        
+      </a>
+    </div>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse">
+        <ul class="navbar-nav">
+          
+          
+            <li>
+              <a href="/.">
+                
+                  Home
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/archives">
+                
+                  Archive
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/about">
+                
+                  About
+                
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+    <div class="button-wrap">
+      <button class="menu-toggle">Primary Menu</button>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            Vue源码学习(一)-FLOW&目录结构
+            
+          </h1>
+          <p class="posted-on">
+          2018-06-07
+          </p>
+          <div class="tags-links">
+            
+              
+                <a href="/tags/前端开发/" rel="tag">
+                  前端开发
+                </a>
+              
+                <a href="/tags/VUE 源码学习/" rel="tag">
+                  VUE 源码学习
+                </a>
+              
+            
+          </div>
+        </div>
+        <!-- Post Main Content -->
+        <div class="entry-content">
+          <h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">src</span><br><span class="line">├── compiler        # 编译相关 </span><br><span class="line">├── core            # 核心代码:内置组件、全局 API 封装，Vue 实例化、观察者、虚拟DOM、工具函数</span><br><span class="line">├── platforms       # 不同平台的支持 web,weex mpvue..</span><br><span class="line">├── server          # 服务端渲染</span><br><span class="line">├── sfc             # .vue 文件解析 --- 解析成一个 JavaScript 的对象</span><br><span class="line">├── shared          # 共享代码</span><br><span class="line"></span><br><span class="line">从 Vue.js 的目录设计可以看到，作者把功能模块拆分的非常清楚，</span><br><span class="line">相关的逻辑放在一个独立的目录下维护，并且把复用的代码也抽成一个独立目录。</span><br></pre></td></tr></table></figure>
+<h3 id="Flow工作方式"><a href="#Flow工作方式" class="headerlink" title="Flow工作方式"></a>Flow工作方式</h3><ol>
+<li>类型推断：通过变量的使用上下文来推断出变量类型，然后根据这些推断来检查类型。</li>
+<li>类型注释：事先注释好我们期待的类型，Flow 会基于这些注释来判断。</li>
+</ol>
+<h3 id="Flow在vue中的应用"><a href="#Flow在vue中的应用" class="headerlink" title="Flow在vue中的应用"></a>Flow在vue中的应用</h3><p>Vue除了使用Flow 内置的基础类型定义，Flow 提出了一个 libdef 的概念，可以用来识别这些第三方库或者是自定义类型，而 Vue.js 也利用了这一特性。通过<strong>.flowconfig</strong>可以进行设置。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Flow in vue 的一些配置</span><br><span class="line"></span><br><span class="line">flow</span><br><span class="line">├── compiler.js        # 编译相关</span><br><span class="line">├── component.js       # 组件数据结构</span><br><span class="line">├── global-api.js      # Global API 结构</span><br><span class="line">├── modules.js         # 第三方库定义</span><br><span class="line">├── options.js         # 选项相关</span><br><span class="line">├── ssr.js             # 服务端渲染相关</span><br><span class="line">├── vnode.js           # 虚拟 node 相关</span><br></pre></td></tr></table></figure>
+<h3 id="Flow-🌰"><a href="#Flow-🌰" class="headerlink" title="Flow 🌰"></a>Flow 🌰</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">/*@flow*/ // 默认下 有这个标示的flow才会去监测  </span><br><span class="line"></span><br><span class="line">class Bar &#123;</span><br><span class="line">    x: string; // x 是字符串</span><br><span class="line">    y: string | number | void; // y 可以是字符串或者数字或者为空</span><br><span class="line">    z: boolean;</span><br><span class="line"></span><br><span class="line">    constructor(x: string, y: string | number | void) &#123;</span><br><span class="line">        this.x = x</span><br><span class="line">        this.y = y</span><br><span class="line">        this.z = false</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var bar: Bar = new Bar(&apos;hello&apos;)</span><br><span class="line">// var bar2: Bar = new Bar(&apos;hello2&apos;, true) 报错</span><br><span class="line"></span><br><span class="line">var obj: &#123;</span><br><span class="line">    a: string,</span><br><span class="line">    b: number,</span><br><span class="line">    c: Array &lt; string &gt; , // 定义数组内的内容</span><br><span class="line">    d: Bar</span><br><span class="line">&#125; = &#123;</span><br><span class="line">    a: &apos;hello&apos;,</span><br><span class="line">    b: 11,</span><br><span class="line">    c: [&apos;hello&apos;, &apos;world&apos;],</span><br><span class="line">    d: new Bar(&apos;hello&apos;, 3)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+        </div>
+      </article>
+    </div>
+    <!-- Comments -->
+    <div class="container">
+      
+<section id="comment">
+  <!-- <h1 class="title">Comments</h1> -->
+
+  
+</section>
+
+
+    </div>
+    <!-- Pre or Next -->
+    <div class="nav-links">
+      
+        <div class="nav-previous">
+          <a href="/2018/06/08/Vue源码学习（一）-vue的初始化/" rel="prev"><span class="meta-arraw meta-arraw-left"></span> Older Posts</a>
+        </div>
+      
+      
+        <div class="nav-next">
+          <a href="/2018/06/04/http-学习/" rel="prev">Newer Posts <span class="meta-arraw meta-arraw-right"></span></a>
+        </div>
+      
+    </div>
+
+  </div>
+</div>
+
+
+  <!-- Footer -->
+  <!-- Footer-widgets -->
+<div class="footer-widgets">
+  <div class="row inside-wrapper">
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">关于本站</h1>
+        <div class="custom-widget-content">
+          
+          <p>记录在工作／学习中碰到的知识，以备不时之需！ </p>
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">Contact</h1>
+        <div class="widget-text">
+          
+            
+              <a href="https://github.com/nameczz" class="icon icon-github" target="_blank">github</a>
+            
+              <a href="mailto:nameczz@126.com" class="icon icon-mail" target="_blank">mail</a>
+            
+          
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">Search</h1>
+        <div class="widget-text">
+          <form onSubmit="return appDaily.submitSearch('')">
+            <p>
+              <input type="text" placeholder="search..." id="homeSearchInput">
+            </p>
+            <!-- <input type="submit" value="GO"> -->
+          </form>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+<!-- Footer -->
+<footer class="site-info">
+  <p>
+    <span>Blog &copy; 2018</span>
+    
+      <span class="split">|</span>
+      <span>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> with Theme <a href="https://github.com/GallenHu/hexo-theme-Daily" target="_blank">Daily</a></span>
+    
+  </p>
+</footer>
+
+
+  <!-- After footer scripts -->
+  <!-- scripts -->
+<script src="/js/app.js"></script>
+
+
+
+
+
+</body>
+
+</html>
